@@ -1,0 +1,7 @@
+1. Metoda between returneaza un intreg q care se afla intre p si r
+Preconditia: r - p > 1
+Postconditia: p < q < r
+
+2. Postconditia e incalcata, p = 1, r = 3
+
+3. Postconditia e incalcata, p = 2, r = 3
