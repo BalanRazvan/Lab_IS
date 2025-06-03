@@ -1,0 +1,42 @@
+1.a) maxsum trebuie sa returneze s = suma valorilor x si y;
+				 m,maximul dintre x si y
+b) function Max(a: int, b: int): int {
+  if a >= b then a else b
+}
+
+method MaxSum(x: int, y: int) returns (s: int, m: int)
+  ensures s == x + y
+  ensures m == Max(x, y)
+{
+  s := x + y;
+  m := Max(x, y);
+}
+c) method RunMaxSumExample() {
+  var a := 1928;
+  var b := 1;
+
+  var total, maximum := MaxSum(a, b);
+
+  assert total == a + b;
+  assert maximum == Max(a, b);
+}
+
+2. 
+a) suma nu trebuie sa depaseasca dublul maximului
+method ReconstructFromMaxSum(s: int, m: int) returns (x: int, y: int)
+  requires s <= 2 * m
+  ensures x + y == s
+  ensures (x == m || y == m) && x <= m && y <= m
+{
+  x := m;
+  y := s - m;
+}
+
+
+b)method TestMaxSum(x: int, y: int) {
+  var sum, max := MaxSum(x, y);
+  assume max <= sum <= 2 * max;
+  var rx, ry := ReconstructFromMaxSum(sum, max);
+
+  assert (rx == x && ry == y) || (rx == y && ry == x);
+}
